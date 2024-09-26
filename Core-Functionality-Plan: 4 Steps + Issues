@@ -1,0 +1,26 @@
+First Step/Issue: Implementing basic DiceWare
+
+Create function to simulate rolling 5 six-side dice
+Load chosen word list file into program
+Implement word lookup based on dice roll results
+Generate initial passphrase of 6 words
+
+Second Step/Issue: Building an interactive user interface
+
+Display current passphrase
+Add option to generate new passphrase
+Add option to add new word to passphrase
+Add option to delete word from passphrase
+Add option to modify individual words
+Add option to revert modified words
+
+Third Step/Issue: Implementing basic DiceWare
+
+Add capitalize word function
+Add letter subsitutition function of some kind (e.g. $ dollar sign for s, 3 for an e)
+Add number appending function
+Implement a way to track/revert modifications
+
+Fourth/Last Step/Issue: Password strength evaluation
+
+Find out how (and then execute) alculate and display entropy (way of measuring how secure passwords are) of current passphrase
