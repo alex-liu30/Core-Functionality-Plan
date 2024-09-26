@@ -1,1 +1,6 @@
+First Step/Issue: Implementing basic DiceWare
 
+Create function to simulate rolling 5 six-side dice
+Load chosen word list file into program
+Implement word lookup based on dice roll results
+Generate initial passphrase of 6 words
