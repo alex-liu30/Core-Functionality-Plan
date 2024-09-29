@@ -1,0 +1,19 @@
+Issue 1: Implement Word Modification Features
+
+@mrjoswald-avenues
+
+1. Capitalize word
+a) create a function that capitalizes word 
+b) implement logic to capitalize the first letter of the word
+c) add UI option to apply this modification
+
+2. Subsitute Letters
+a) create a function to subsitute letters
+b) define a dictionary of letter-to-symbol things (like @ for a or $ for s)
+c) implement logic to replace letters with corresponding symbols
+d) add a UI option to apply this modification
+
+3. Append A Number
+a) create a function to do so
+b) implement logic to add a random number from 0 to 9 to the end of the word
+c) add a UI option to apply this modification
