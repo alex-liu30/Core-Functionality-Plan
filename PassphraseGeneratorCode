@@ -1,0 +1,131 @@
+import Foundation
+
+class PassphraseGenerator {
+    var wordList: [String: String] = [:]
+    var currentPassphrase: [String] = []
+    var originalWords: [String] = []
+    
+    init() {
+        loadWordList()
+    }
+    
+    func loadWordList() {
+        wordList = [
+            "11111": "apple", "11112": "mountain", "11113": "whisper", "11114": "ocean", "11115": "sunflower",
+            "11116": "dragon", "11121": "piano", "11122": "butterfly", "11123": "thunder", "11124": "chocolate"
+            
+        ]
+    }
+    
+    func generatePassphrase(wordCount: Int) {
+        currentPassphrase = []
+        originalWords = []
+        for _ in 0..<wordCount {
+            if let word = wordList.randomElement()?.value {
+                currentPassphrase.append(word)
+                originalWords.append(word)
+            }
+        }
+    }
+    
+    func addWord() {
+        if let word = wordList.randomElement()?.value {
+            currentPassphrase.append(word)
+            originalWords.append(word)
+        }
+    }
+    
+    func deleteWord(at index: Int) {
+        guard index >= 0 && index < currentPassphrase.count else { return }
+        currentPassphrase.remove(at: index)
+        originalWords.remove(at: index)
+    }
+    
+    func capitalizeWord(at index: Int) {
+        guard index >= 0 && index < currentPassphrase.count else { return }
+        currentPassphrase[index] = currentPassphrase[index].capitalized
+    }
+    
+    func substituteLetters(at index: Int) {
+        guard index >= 0 && index < currentPassphrase.count else { return }
+        let substitutions: [Character: Character] = ["a": "@", "e": "3", "i": "1", "o": "0", "s": "$"]
+        currentPassphrase[index] = String(currentPassphrase[index].map { substitutions[$0] ?? $0 })
+    }
+    
+    func addNumberToWord(at index: Int) {
+        guard index >= 0 && index < currentPassphrase.count else { return }
+        currentPassphrase[index] += String(Int.random(in: 0...9))
+    }
+    
+    func revertWord(at index: Int) {
+        guard index >= 0 && index < currentPassphrase.count else { return }
+        currentPassphrase[index] = originalWords[index]
+    }
+    
+    func displayPassphrase() -> String {
+        return currentPassphrase.joined(separator: " ")
+    }
+}
+
+func runPassphraseGenerator() {
+    let generator = PassphraseGenerator()
+    
+    print("Welcome to Alex's Passphrase Generator!")
+    
+    while true {
+        print("\nCurrent Passphrase: \(generator.displayPassphrase())")
+        print("\nOptions:")
+        print("1. Generate new passphrase")
+        print("2. Add word")
+        print("3. Delete word")
+        print("4. Capitalize word")
+        print("5. Substitute letters")
+        print("6. Add number to word")
+        print("7. Revert word")
+        print("8. Exit")
+        
+        if let choice = readLine(), let option = Int(choice) {
+            switch option {
+            case 1:
+                print("Enter number of words:")
+                if let input = readLine(), let count = Int(input) {
+                    generator.generatePassphrase(wordCount: count)
+                }
+            case 2:
+                generator.addWord()
+            case 3:
+                print("Enter index of word to delete (1-\(generator.currentPassphrase.count)):")
+                if let input = readLine(), let index = Int(input) {
+                    generator.deleteWord(at: index - 1)
+                }
+            case 4:
+                print("Enter index of word to capitalize (1-\(generator.currentPassphrase.count)):")
+                if let input = readLine(), let index = Int(input) {
+                    generator.capitalizeWord(at: index - 1)
+                }
+            case 5:
+                print("Enter index of word to substitute letters (1-\(generator.currentPassphrase.count)):")
+                if let input = readLine(), let index = Int(input) {
+                    generator.substituteLetters(at: index - 1)
+                }
+            case 6:
+                print("Enter index of word to add number (1-\(generator.currentPassphrase.count)):")
+                if let input = readLine(), let index = Int(input) {
+                    generator.addNumberToWord(at: index - 1)
+                }
+            case 7:
+                print("Enter index of word to revert (1-\(generator.currentPassphrase.count)):")
+                if let input = readLine(), let index = Int(input) {
+                    generator.revertWord(at: index - 1)
+                }
+            case 8:
+                print("Goodbye!")
+                return
+            default:
+                print("Invalid option. Please try again.")
+            }
+        }
+    }
+}
+
+runPassphraseGenerator()
